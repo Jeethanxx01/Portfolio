@@ -8,7 +8,7 @@ Template: Feel free to use this site as a template for your own portfolio.
 Getting Started
 If you want to use this as a template:
 
-Clone the repo: git clone https://github.com/yourusername/portfolio-website.git
+Clone the repo: git clone https://github.com/yourusername/portfolio-website.git.
 Open the project in your favorite code editor.
 Customize it with your own projects and information.
 
