@@ -1,4 +1,4 @@
-Hey there! Welcome to my portfolio website. This site is built with HTML, CSS, JavaScript, and Bootstrap, and it's designed to showcase my work and skills as a software developer.
+Hey there! Welcome to my portfolio project repository.This project is built with HTML, CSS, JavaScript, and Bootstrap, and it's designed to showcase my work and skills as a software developer.
 
 What's Inside
 
