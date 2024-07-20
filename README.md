@@ -3,7 +3,9 @@ Hey there! Welcome to my portfolio website. This site is built with HTML, CSS, J
 What's Inside
 
 Projects: Check out the various projects I've worked on.
+
 Skills: Get a glimpse of the technical skills I've honed over time.
+
 Template: Feel free to use this site as a template for your own portfolio.
 
 Getting Started.
