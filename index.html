@@ -1,1 +1,427 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><link rel="manifest" href="/manifest.json"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="icon" href="/favicon.ico"/><meta name="description" content="Portfolio website of Jeethan Joel Crasta"/><title>Jeethan Joel Crasta</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><script defer="defer" src="/static/js/main.5abfc9d0.js"></script><link href="/static/css/main.c4f6a100.css" rel="stylesheet"></head><body><div id="root"></div><script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeethan Joel Crasta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" sizes="64x64" href="images/logo.png"> 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(33, 37, 41, 0.95) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .navbar-brand, .nav-link {
+            font-family: 'Poppins', sans-serif;
+        }
+        #about p, #skills span, #projects p {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+        .project-card h3 {
+            font-weight: 600;
+        }
+        .project-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .cta-buttons {
+            margin-top: 2rem;
+        }
+        .btn.primary {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+            color: white;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(37, 99, 235, 0.3);
+            background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+        }
+        #about {
+            position: relative;
+            overflow: hidden;
+            background-color: #202221;
+        }
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        #about .container {
+            position: relative;
+            z-index: 1;
+        }
+        /* Profile Image Styling */
+        .profile-image-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .profile-image-container:hover {
+            transform: scale(1.02);
+        }
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        /* Project Card Image Styling */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .project-card .p-4 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card button {
+            margin-top: auto;
+        }
+        /* Skill Card Styling */
+        .skill-card {
+            background: rgba(26, 28, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: #3B82F6;
+        }
+        .skill-header {
+            margin-bottom: 1rem;
+        }
+        .skill-header i {
+            font-size: 2.5rem;
+            color: #3B82F6;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .skill-card:hover .skill-header i {
+            transform: scale(1.1);
+        }
+        .skill-header h3 {
+            color: #ffffff;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .skill-list {
+            color: #a0aec0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        /* Projects Section Styling */
+        .project-card {
+            background: rgba(26, 28, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-color: #3B82F6;
+        }
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        .project-card .p-4 {
+            padding: 1.5rem;
+        }
+        .project-card h3 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .project-card p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .project-card button {
+            background: #3B82F6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .project-card button:hover {
+            background: #2563EB;
+            transform: translateY(-2px);
+        }
+        /* Section Headers */
+        #skills h2, #projects h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+        /* Section Backgrounds */
+        #skills, #projects {
+            position: relative;
+            padding: 5rem 0;
+        }
+        #skills::before, #projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        #skills .container, #projects .container {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">  
+        <a class="navbar-brand" href="#">Jeethan Joel Crasta</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#skills">Skills</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#projects">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="text-center py-20">
+        <div class="mb-4">
+            <h1 class="text-5xl font-bold mt-4 hover:text-gray-300 transition duration-300">Jeethan Joel Crasta</h1>
+        </div>
+        <div class="flex justify-center items-center mt-4 space-x-6">
+            <a href="https://github.com/Jeethanxx01" target="_blank" class="text-white hover:text-gray-300 transition duration-300">
+                <i class="fab fa-github text-2xl"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/jeethancrasta/" target="_blank" class="text-white hover:text-gray-300 transition duration-300">
+                <i class="fab fa-linkedin text-2xl"></i>
+            </a>
+            <a href="mailto:jeethanjoel@gmail.com" class="text-white hover:text-gray-300 transition duration-300">
+                <i class="fas fa-envelope text-2xl"></i>
+            </a>            
+            <a href="https://drive.google.com/file/d/1rl3msBVW-m-dYySl4p8q_0-9w2NxgDrx/view?usp=sharing" download class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition duration-300 flex items-center">
+                <i class="fas fa-download mr-2"></i>Download CV
+            </a>
+        </div>
+    </header>
+
+    <section id="about" class="py-20">
+        <div class="container mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-8">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 md:pr-8 flex justify-center md:justify-end">
+                    <div class="profile-image-container">
+                        <img src="images/profile.jpg" alt="Profile Picture" class="object-cover object-top">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 md:pl-8 mt-8 md:mt-0">
+                    <p class="text-lg leading-relaxed text-white mb-4">
+                        I'm a B.Tech graduate in Computer Science & Business Systems, skilled in Java, Spring Boot, AWS Cloud, and MySQL. I'm passionate about architecting robust applications, optimizing database schemas, and making data-driven decisions. Let's collaborate to drive impactful results. Looking forward to connecting with great minds!
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#skills" class="btn primary">
+                            Visit My Skills
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 text-white" style="background-color: #202221;">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold">Skills</h2>
+    
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                <!-- Programming Languages Card -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                         <i class="fas fa-code text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">Programming Languages</h3>
+                    </div>
+                    <p class="skill-list">Java, Python, C#, JavaScript</p>
+                </div>
+    
+                <!-- Frameworks and Libraries Card -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-layer-group text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">Frameworks and Libraries</h3>
+                    </div>
+                    <p class="skill-list">Spring Boot Framework, Hibernate, Collection Framework, ASP .Net core, Flask, React.js, Tailwind CSS</p>
+                </div>
+    
+                <!-- Databases Card -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                         <i class="fas fa-database text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">Databases</h3>
+                    </div>
+                    <p class="skill-list">MySQL, MongoDB, Redis, Astra vector DB</p>
+                </div>
+    
+                <!-- Development Tools Card -->
+                <div class="skill-card">
+                     <div class="skill-header">
+                         <i class="fas fa-tools text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">Development Tools</h3>
+                    </div>
+                    <p class="skill-list">AWS cloud, Linux, Git, Kafka, ELK Stack, Docker, Docker Compose, Postman</p>
+                </div>
+    
+                <!-- System Architectures Card -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                         <i class="fas fa-network-wired text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">System architectures</h3>
+                    </div>
+                    <p class="skill-list">microservice architecture, OOP, ORM, Agile methodology, Rest API, Documentation</p>
+                </div>
+    
+                <!-- Soft Skills Card -->
+                <div class="skill-card">
+                    <div class="skill-header">
+                        <i class="fas fa-users text-4xl mb-2"></i>
+                        <h3 class="text-xl font-semibold">AI Tools</h3>
+                    </div>
+                    <p class="skill-list">Retrieval-Augmented Generation (RAG) Model, Open-router, OpenAI API, Gemini API</p>
+                </div>
+            </div>
+        </div>
+    </section>
+      
+    
+    <section id="projects" class="py-20 text-white" style="background-color: #202221;">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-semibold">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    
+                <!-- Microservice E-Commerce Platform -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden project-card">
+                    <img src="images/project1.png" alt="Microservice E-Commerce Platform" class="w-full" loading="lazy">
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold">Microservice E-Commerce Platform</h3>
+                        <p class="text-gray-400 text-sm">October-December 2024</p>
+                        <p class="mt-2">This project showcases a scalable, microservice-based e-commerce platform with JWT role-based authentication, built using Spring Boot, Eureka Server, API Gateway for backend and React for frontend. It features services with specialized databases: SQL for authentication, MongoDB for product data and availability, and Redis for caching cart data. Apache Kafka is integrated for real-time inventory and stock updates. Order management is handled by a dedicated service. The backend architecture follows OOP principles and leverages JpaRepository and MongoRepository for efficient data handling and ELK stack for server logging.</p>
+                        <button onclick="window.location.href='https://github.com/Jeethanxx01/Enterprise-E-Commerce-Microservices-Platform';" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Project link</button>
+                    </div>
+                </div>
+    
+                <!-- Retrieval-Augmented Generation Model -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden project-card">
+                    <img src="images/project2.png" alt="Retrieval-Augmented Generation Model" class="w-full" loading="lazy">
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold">Retrieval-Augmented Generation Model</h3>
+                        <p class="text-gray-400 text-sm">April-May 2025</p>
+                        <p class="mt-2">AI-powered E-commerce Chatbot application leveraging Retrieval-Augmented Generation architecture that combines LLM capabilities to enable context-aware product recommendations and semantic search from real time vector Database. Built with Python, Flask, Google's Gemini API, and DataStax Astra DB, and deployed on AWS EC2, this project marks a revolution in e-commerce product recommendation domain.</p>
+                        <button onclick="window.location.href='https://github.com/Jeethanxx01/Retrieval-Augmented-Generation';" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Project link</button>
+                    </div>
+                </div>
+    
+                <!-- AI-Based Smart Research Assistant -->
+                <div class="border border-gray-700 rounded-lg overflow-hidden project-card">
+                    <img src="images/project3.png" alt="AI-Based Smart Research Assistant" class="w-full" loading="lazy">
+                    <div class="p-4">
+                        <h3 class="text-2xl font-bold">AI-Based Smart Research Assistant</h3>
+                         <p class="text-gray-400 text-sm">January-February 2025</p>
+                        <p class="mt-2">Built with Spring Boot and Gemmi API, the assistant allows users to highlight any text and click "Summarize" to instantly generate concise summaries from their respective user-selected AI models through Model API keys. Users can quickly get started by installing this extension and using it. This extension also allows users to save important insights by adding summaries to notes, making research more organized and efficient.</p>
+                        <button onclick="window.location.href='https://github.com/Jeethanxx01/AI-Based-Smart-Research-Assistant-';" class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Project link</button>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+     
+
+    <footer class="py-4 bg-custom text-center">
+        <p>&copy; 2025 jeethan joel Crasta. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
